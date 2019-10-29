@@ -5,7 +5,6 @@ except TypeError:
 
 #raise TypeError ("I raised TypeError!")
 
-
 #READ FILE
 my_file = open("file.txt", "rt")
 

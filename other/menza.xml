@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<menza>
+    <datum den="Pondeli">
+        <jidlo nazev="Bramborove placky">
+            <ingredience nazev="brambory"/>
+            <ingredience nazev="mouka"/>
+            <ingredience nazev="vejce"/>
+        </jidlo>
+        <jidlo nazev="Palacinky">
+            <ingredience nazev="mleko"/>
+            <ingredience nazev="mouka"/>
+            <ingredience nazev="vejce"/>
+        </jidlo>
+    </datum>
+</menza>
