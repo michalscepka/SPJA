@@ -51,6 +51,9 @@
     <Compile Include="steam\migrations\__init__.py" />
     <Compile Include="steam\models.py" />
     <Compile Include="steam\tests.py" />
+    <Compile Include="steam\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="steam\views.py" />
     <Compile Include="steam\__init__.py" />
   </ItemGroup>
@@ -61,6 +64,15 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="requirements.txt" />
+    <Content Include="steam\templates\steam\category.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="steam\templates\steam\game.html">
+      <SubType>Code</SubType>
+    </Content>
+    <Content Include="steam\templates\steam\developer.html">
+      <SubType>Code</SubType>
+    </Content>
     <Content Include="steam\templates\steam\index.html" />
   </ItemGroup>
   <ItemGroup>

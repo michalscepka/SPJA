@@ -1,0 +1,7 @@
+<h1>{{ category.name }}</h1>
+
+<ul>
+{% for game in category.game_set.all %}
+    <li><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></li>
+{% endfor %}
+</ul>
