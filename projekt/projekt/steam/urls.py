@@ -12,6 +12,4 @@ urlpatterns = [
     path('<int:developer_id>/developer', views.developer, name='developer'),
     # ex: /steam/5/category/
     path('<int:category_id>/category', views.category, name='category'),
-
-    path('<int:game_id>/add_review', views.add_review, name='add_review'),
 ]
