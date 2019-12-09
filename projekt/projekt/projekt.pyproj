@@ -34,6 +34,9 @@
     <Compile Include="manage.py" />
     <Compile Include="polls\admin.py" />
     <Compile Include="polls\apps.py" />
+    <Compile Include="polls\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="polls\migrations\__init__.py" />
     <Compile Include="polls\models.py" />
     <Compile Include="polls\tests.py" />
@@ -48,6 +51,9 @@
     <Compile Include="projekt\wsgi.py" />
     <Compile Include="steam\admin.py" />
     <Compile Include="steam\apps.py" />
+    <Compile Include="steam\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="steam\migrations\__init__.py" />
     <Compile Include="steam\models.py" />
     <Compile Include="steam\tests.py" />
@@ -74,6 +80,9 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="steam\templates\steam\index.html" />
+    <Content Include="steam\templates\steam\review.html">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="polls\" />

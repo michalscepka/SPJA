@@ -1,7 +1,12 @@
 <h1>{{ developer.name }}</h1>
 
+<hr />
+
 <img src="{{ developer.logo }}" style="width:255px; height:255px;"/><br />
 
+<hr />
+
+<h3>Games published by {{ developer.name }}</h3>
 <ul>
 {% for game in developer.game_set.all %}
     <li><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></li>

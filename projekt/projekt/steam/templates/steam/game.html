@@ -1,9 +1,14 @@
 <h1>{{ game.name }}</h1>
+
+<hr />
+
 <img src="{{ game.image }}" />
 
 <p>Developer: <a href="{% url 'steam:developer' game.developer.id %}">{{ game.developer.name }}</a></p>
-
 <p>Release date: {{ game.release_date }}</p>
+
+<hr />
+
 <h3>Categories</h3>
 <ul>
 {% for category in game.category.all %}
@@ -11,10 +16,11 @@
 {% endfor %}
 </ul>
 
+<hr />
 
 <h3>Reviews</h3>
 <ul>
 {% for review in game.review_set.all %}
-    <li>nickname: {{ review.author_name }}<br />text: {{ review.text }}</li>
+    <li>nickname: {{ review.author_name }}<br />text: {{ review.text }}<br />stars: {{ review.stars }}</li>
 {% endfor %}
 </ul>

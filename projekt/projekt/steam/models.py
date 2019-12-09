@@ -2,6 +2,8 @@ import datetime
 
 from django.db import models
 from django.utils import timezone
+from django.core.validators import MaxValueValidator, MinValueValidator
+from django.forms import ModelForm
 
 class Developer(models.Model):
     name = models.CharField(max_length=50)
@@ -30,8 +32,9 @@ class Game(models.Model):
 
 class Review(models.Model):
     author_name = models.CharField(max_length=50)
-    text = models.CharField(max_length=300)
+    text = models.TextField()
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
+    stars = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
 
     def __str__(self):
         s = self.author_name + "; " + self.text
