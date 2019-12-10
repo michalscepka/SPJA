@@ -1,0 +1,13 @@
+<h1>Developers</h1>
+
+<hr />
+
+{% if developer_list %}
+    <ul>
+    {% for developer in developer_list %}
+        <li><a href="{% url 'steam:developer' developer.id %}">{{ developer.name }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No developers are available.</p>
+{% endif %}

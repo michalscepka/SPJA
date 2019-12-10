@@ -32,6 +32,19 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="manage.py" />
+    <Compile Include="polls\admin.py" />
+    <Compile Include="polls\apps.py" />
+    <Compile Include="polls\forms.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="polls\migrations\__init__.py" />
+    <Compile Include="polls\models.py" />
+    <Compile Include="polls\tests.py" />
+    <Compile Include="polls\urls.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="polls\views.py" />
+    <Compile Include="polls\__init__.py" />
     <Compile Include="projekt\__init__.py" />
     <Compile Include="projekt\settings.py" />
     <Compile Include="projekt\urls.py" />
@@ -51,10 +64,12 @@
     <Compile Include="steam\__init__.py" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="requirements.txt" />
-    <Content Include="steam\templates\steam\categories.html">
+    <Content Include="polls\templates\polls\detail.html" />
+    <Content Include="polls\templates\polls\index.html" />
+    <Content Include="polls\templates\polls\results.html">
       <SubType>Code</SubType>
     </Content>
+    <Content Include="requirements.txt" />
     <Content Include="steam\templates\steam\category.html">
       <SubType>Code</SubType>
     </Content>
@@ -68,8 +83,15 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="steam\templates\steam\index.html" />
+    <Content Include="steam\templates\steam\review.html">
+      <SubType>Code</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="polls\" />
+    <Folder Include="polls\migrations\" />
+    <Folder Include="polls\templates\" />
+    <Folder Include="polls\templates\polls\" />
     <Folder Include="projekt\" />
     <Folder Include="steam\" />
     <Folder Include="steam\migrations\" />

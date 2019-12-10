@@ -4,8 +4,6 @@
 
 <img src="{{ game.image }}" />
 
-<p>{{ game.description }}</p>
-
 <p>Developer: <a href="{% url 'steam:developer' game.developer.id %}">{{ game.developer.name }}</a></p>
 <p>Release date: {{ game.release_date }}</p>
 
@@ -21,13 +19,8 @@
 <hr />
 
 <h3>Reviews</h3>
-
-{% if game.review_set.all %}
-    <ul>
-    {% for review in game.review_set.all %}
-        <li>nickname: {{ review.author_name }}<br />text: {{ review.text }}<br />stars: {{ review.stars }}</li>
-    {% endfor %}
-    </ul>
-{% else %}
-    <p>This game has no reviews yet.</p>
-{% endif %}
+<ul>
+{% for review in game.review_set.all %}
+    <li>nickname: {{ review.author_name }}<br />text: {{ review.text }}<br />stars: {{ review.stars }}</li>
+{% endfor %}
+</ul>

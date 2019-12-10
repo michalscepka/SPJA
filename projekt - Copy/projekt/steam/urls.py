@@ -14,6 +14,4 @@ urlpatterns = [
     path('<int:category_id>/category', views.category, name='category'),
     # ex: /steam/developers/
     path('developers', views.developers, name='developers'),
-    # ex: /steam/categories/
-    path('categories', views.categories, name='categories'),
 ]

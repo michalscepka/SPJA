@@ -24,8 +24,3 @@ def developers(request):
     developer_list = Developer.objects.all()
     context = {'developer_list': developer_list}
     return render(request, 'steam/developers.html', context)
-
-def categories(request):
-    category_list = Category.objects.all()
-    context = {'category_list': category_list}
-    return render(request, 'steam/categories.html', context)
