@@ -31,3 +31,13 @@
 {% else %}
     <p>This game has no reviews yet.</p>
 {% endif %}
+
+<hr />
+
+<h3>Add review</h3>
+
+<form action ="{% url 'steam:addreview' game.id %}" method="post">
+    {% csrf_token %}
+    {{ review.as_p }}
+    <input type="submit" class="btn-primary" value="Add">
+ </form>
