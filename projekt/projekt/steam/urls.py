@@ -1,21 +1,22 @@
 from django.urls import path
+from django.conf.urls import url
 
 from . import views
 
 app_name = 'steam'
 urlpatterns = [
-    # ex: /steam/
+    # ex: /
     path('', views.index, name='index'),
-    # ex: /steam/5/
+    # ex: /5/
     path('<int:game_id>', views.game, name='game'),
-    # ex: /steam/5/developer/
+    # ex: /5/developer/
     path('<int:developer_id>/developer', views.developer, name='developer'),
-    # ex: /steam/5/category/
+    # ex: /5/category/
     path('<int:category_id>/category', views.category, name='category'),
-    # ex: /steam/developers/
+    # ex: /developers/
     path('developers', views.developers, name='developers'),
-    # ex: /steam/categories/
+    # ex: /categories/
     path('categories', views.categories, name='categories'),
-
+    # ex: /5/addreview/
     path('<int:game_id>/addreview', views.addreview, name='addreview'),
 ]

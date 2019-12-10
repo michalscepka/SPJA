@@ -38,6 +38,9 @@
     <Compile Include="projekt\wsgi.py" />
     <Compile Include="steam\admin.py" />
     <Compile Include="steam\apps.py" />
+    <Compile Include="steam\filters.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="steam\forms.py">
       <SubType>Code</SubType>
     </Compile>

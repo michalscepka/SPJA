@@ -4,11 +4,12 @@ from django.urls import reverse
 
 from .models import Developer, Category, Game, Review
 from .forms import ReviewForm
+from .filters import GameFilter
 
 def index(request):
     games_list = Game.objects.all()
-    context = {'games_list': games_list}
-    return render(request, 'steam/index.html', context)
+    games_filter = GameFilter(request.GET, queryset=games_list)
+    return render(request, 'steam/index.html', {'filter': games_filter})
 
 def game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)

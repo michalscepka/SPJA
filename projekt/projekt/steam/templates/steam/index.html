@@ -2,9 +2,14 @@
 
 <hr />
 
-{% if games_list %}
+<form method="get">
+    {{ filter.form.as_p }}
+    <button type="submit">Search</button>
+</form>
+
+{% if filter %}
     <ul>
-    {% for game in games_list %}
+    {% for game in filter.qs %}
         <li><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></li>
     {% endfor %}
     </ul>
