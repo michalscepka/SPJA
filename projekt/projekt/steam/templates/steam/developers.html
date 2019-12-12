@@ -3,13 +3,22 @@
 {% block content %}
 
 {% if developer_list %}
-    <ul>
-    {% for developer in developer_list %}
-        <li><a href="{% url 'steam:developer' developer.id %}">{{ developer.name }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="row">
+        {% for developer in developer_list %}
+            <div class="col-sm-2">
+                <div class="card">
+                    <div class="card-body">
+                        <a href="{% url 'steam:developer' developer.id %}"><img class="card-img-top" src="{{ developer.logo }}" alt="Card image cap"></a>
+                        <br /><br />
+                        <h6 class="card-title"><a href="{% url 'steam:developer' developer.id %}">{{ developer.name }}</a></h6>
+                    </div>
+                </div>
+                <br />
+            </div>
+        {% endfor %}
+    </div>
 {% else %}
-    <p>No developers are available.</p>
+    <p>No developers found.</p>
 {% endif %}
 
 {% endblock %}

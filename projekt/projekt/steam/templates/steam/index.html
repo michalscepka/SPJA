@@ -3,13 +3,13 @@
 {% block content %}
 
 <form method="get">
-    {{ filter.form.as_p }}
-    <button type="submit" class="btn btn-outline-primary">Search</button>
+    {{ filter.form.as_table }}
+    <input type="submit" class="btn btn-outline-primary" value="Search">
 </form>
 
 <hr />
 
-{% if filter %}
+{% if filter.qs %}
     <div class="row">
         {% for game in filter.qs %}
             <div class="col-sm-4">
@@ -24,7 +24,7 @@
         {% endfor %}
     </div>
 {% else %}
-    <p>No games are available.</p>
+    <p>No games found.</p>
 {% endif %}
 
 {% endblock %}

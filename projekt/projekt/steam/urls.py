@@ -1,5 +1,4 @@
 from django.urls import path
-from django.conf.urls import url
 
 from . import views
 
@@ -20,5 +19,5 @@ urlpatterns = [
     # ex: /5/addreview/
     path('<int:game_id>/addreview', views.addreview, name='addreview'),
     # ex: /5/vote/
-    path('<int:review_id>/vote/', views.vote, name='vote'),
+    path('<int:review_id>/vote/', views.vote, name='vote')
 ]

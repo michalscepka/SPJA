@@ -11,28 +11,42 @@ from .filters import GameFilter
 def index(request):
     games_list = Game.objects.order_by('-release_date')
     games_filter = GameFilter(request.GET, queryset=games_list)
-    return render(request, 'steam/index.html', {'title':'Steam', 'filter': games_filter, 'year': datetime.now().year,})
+    return render(request, 'steam/index.html', {'title': 'Steam', 'filter': games_filter, 'year': datetime.now().year})
 
 def game(request, game_id):
     game = get_object_or_404(Game, pk=game_id)
-    review = ReviewForm()
-    return render(request, 'steam/game.html', {'game': game, 'review': review, 'title': game.name, 'year': datetime.now().year,})
+    review_form = ReviewForm()
+    stars_count = 0
+    if game.review_set.all():
+        for review in game.review_set.all():
+            stars_count += review.stars
+        stars_avg = stars_count / len(game.review_set.all())
+    else:
+        stars_avg = 'No reviews yet'
+
+    return render(
+        request, 'steam/game.html', {
+            'game': game,
+            'review_form': review_form,
+            'stars_avg': stars_avg,
+            'title': game.name,
+            'year': datetime.now().year})
 
 def developer(request, developer_id):
     developer = get_object_or_404(Developer, pk=developer_id)
-    return render(request, 'steam/developer.html', {'developer': developer, 'title': developer.name, 'year': datetime.now().year,})
+    return render(request, 'steam/developer.html', {'developer': developer, 'title': developer.name, 'year': datetime.now().year})
 
 def category(request, category_id):
     category = get_object_or_404(Category, pk=category_id)
-    return render(request, 'steam/category.html', {'category': category, 'title': category.name, 'year': datetime.now().year,})
+    return render(request, 'steam/category.html', {'category': category, 'title': category.name, 'year': datetime.now().year})
 
 def developers(request):
     developer_list = Developer.objects.order_by('name')
-    return render(request, 'steam/developers.html', {'developer_list': developer_list, 'title': 'Developers', 'year': datetime.now().year,})
+    return render(request, 'steam/developers.html', {'developer_list': developer_list, 'title': 'Developers', 'year': datetime.now().year})
 
 def categories(request):
     category_list = Category.objects.order_by('name')
-    return render(request, 'steam/categories.html', {'category_list': category_list, 'title': 'Categories', 'year': datetime.now().year,})
+    return render(request, 'steam/categories.html', {'category_list': category_list, 'title': 'Categories', 'year': datetime.now().year})
 
 def addreview(request, game_id):
     game = get_object_or_404(Game, pk=game_id)

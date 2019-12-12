@@ -10,22 +10,52 @@
         <p>{{ game.description }}</p>
         <p>Developer: <a href="{% url 'steam:developer' game.developer.id %}">{{ game.developer.name }}</a></p>
         <p>Release date: {{ game.release_date }}</p>
+        {% if stars_avg.is_integer %}
+            <p>Average rating: <b>{{ stars_avg }}/10</b></p>
+        {% else %}
+            <p>Average rating: <b>{{ stars_avg }}</b></p>
+        {% endif %}
     </div>
 </div>
 
 <hr />
 
 {% for category in game.category.all|dictsort:"name" %}
-    <a class="btn btn-link shadow-sm p-3 mb-2" href="{% url 'steam:category' category.id %}">{{ category.name }}</a>
+    <a class="btn btn-light shadow-sm p-3 mb-2" href="{% url 'steam:category' category.id %}">{{ category.name }}</a>
 {% endfor %}
 <hr />
 
 <h5>Write your review</h5>
 
-<form action ="{% url 'steam:addreview' game.id %}" method="post">
+<form class="form-horizontal" action ="{% url 'steam:addreview' game.id %}" method="post">
     {% csrf_token %}
-    {{ review.as_p }}
-    <input type="submit" class="btn-primary" value="Add">
+    {{ review_form.non_field_errors }}
+    <div class="form-group">
+        {{ review_form.author_name.errors }}
+        <label for="review_author" class="col-md-2 control-label">Your name:</label>
+        <div class="col-md-3">
+            <input class="form-control" id="review_author" type="text" name="author_name" maxlength="50" required>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ review_form.text.errors }}
+        <label for="review_text" class="col-md-2 control-label">Text:</label>
+        <div class="col-md-6">
+            <textarea class="form-control" name="text" id="review_text"></textarea>
+        </div>
+    </div>
+    <div class="form-group">
+        {{ review_form.stars.errors }}
+        <label for="review_stars" class="col-md-2 control-label">Rate:</label>
+        <div class="col-md-1">
+            <input type="number" class="form-control" id="review_stars" name="stars" min="0" max="10" required>
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-md-1">
+            <input type="submit" class="btn btn-primary" value="Add review">
+        </div>
+    </div>
 </form>
 
 <hr />
@@ -34,9 +64,9 @@
 
 {% if game.review_set.all %}
     {% for review in game.review_set.all|dictsortreversed:"likes" %}
-        <div class="card w-75">
+        <div class="card w-75 shadow-sm">
             <div class="card-header">
-                {{ review.author_name }} <b>{{ review.stars }} stars</b>
+                {{ review.author_name }} <b>{{ review.stars }}/10</b>
             </div>
             <div class="card-body">
                 <p class="card-text">{{ review.text }}</p>
@@ -44,17 +74,15 @@
                 <form action="{% url 'steam:vote' review.id %}" method="post">
                 {% csrf_token %}
                 {{ review.as_p }}
-                    Was this review helpful? <input type="submit" class="btn btn-primary" value="Yes"><br />
+                    Was this review helpful? <input type="submit" class="btn btn-success" value="Yes"><br />
                 </form>
-                {{ review.likes }} people found this review helpful
+                <p class="card-text"><small class="text-muted">{{ review.likes }} people found this review helpful</small></p>
             </div>
         </div>
-<br />
+        <br />
     {% endfor %}
 {% else %}
     <p>This game has no reviews yet.</p>
 {% endif %}
-
-<hr />
 
 {% endblock %}
