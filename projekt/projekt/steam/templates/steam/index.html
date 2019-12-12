@@ -3,8 +3,17 @@
 {% block content %}
 
 <form method="get">
-    {{ filter.form.as_table }}
-    <input type="submit" class="btn btn-outline-primary" value="Search">
+    <div class="row">
+        <div class="col-sm-1">
+            <label for="filter">Search: </label>
+        </div>
+        <div class="col-sm-3">
+            <input class="form-control" id="filter" type="text" name="name">
+        </div>
+        <div class="col-sm-4">
+            <input type="submit" class="btn btn-outline-primary" value="Search">
+        </div>
+    </div>
 </form>
 
 <hr />
