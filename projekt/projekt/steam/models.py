@@ -35,7 +35,16 @@ class Review(models.Model):
     text = models.TextField()
     game = models.ForeignKey(Game, on_delete=models.CASCADE)
     stars = models.IntegerField(default=0, validators=[MaxValueValidator(10), MinValueValidator(0)])
+    likes = models.IntegerField(default=0)
 
     def __str__(self):
         s = self.author_name + "; " + self.text
         return s
+
+class Choice(models.Model):
+    review = models.ForeignKey(Review, on_delete=models.CASCADE)
+    choice_text = models.CharField(max_length=200)
+    votes = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.choice_text

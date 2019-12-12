@@ -1,43 +1,60 @@
-<h1>{{ game.name }}</h1>
+{% extends "steam/layout.html" %}
+
+{% block content %}
+
+<div class="row">
+    <div class="col-lg-5">
+        <img src="{{ game.image }}"/>
+    </div>
+    <div class="col-lg-7">
+        <p>{{ game.description }}</p>
+        <p>Developer: <a href="{% url 'steam:developer' game.developer.id %}">{{ game.developer.name }}</a></p>
+        <p>Release date: {{ game.release_date }}</p>
+    </div>
+</div>
 
 <hr />
 
-<img src="{{ game.image }}" />
-
-<p>{{ game.description }}</p>
-
-<p>Developer: <a href="{% url 'steam:developer' game.developer.id %}">{{ game.developer.name }}</a></p>
-<p>Release date: {{ game.release_date }}</p>
-
-<hr />
-
-<h3>Categories</h3>
-<ul>
-{% for category in game.category.all %}
-    <li><a href="{% url 'steam:category' category.id %}">{{ category.name }}</a></li>
+{% for category in game.category.all|dictsort:"name" %}
+    <a class="btn btn-link shadow-sm p-3 mb-2" href="{% url 'steam:category' category.id %}">{{ category.name }}</a>
 {% endfor %}
-</ul>
+<hr />
+
+<h5>Write your review</h5>
+
+<form action ="{% url 'steam:addreview' game.id %}" method="post">
+    {% csrf_token %}
+    {{ review.as_p }}
+    <input type="submit" class="btn-primary" value="Add">
+</form>
 
 <hr />
 
-<h3>Reviews</h3>
+<h5>User reviews</h5>
 
 {% if game.review_set.all %}
-    <ul>
-    {% for review in game.review_set.all %}
-        <li>nickname: {{ review.author_name }}<br />text: {{ review.text }}<br />stars: {{ review.stars }}</li>
+    {% for review in game.review_set.all|dictsortreversed:"likes" %}
+        <div class="card w-75">
+            <div class="card-header">
+                {{ review.author_name }} <b>{{ review.stars }} stars</b>
+            </div>
+            <div class="card-body">
+                <p class="card-text">{{ review.text }}</p>
+                <hr />
+                <form action="{% url 'steam:vote' review.id %}" method="post">
+                {% csrf_token %}
+                {{ review.as_p }}
+                    Was this review helpful? <input type="submit" class="btn btn-primary" value="Yes"><br />
+                </form>
+                {{ review.likes }} people found this review helpful
+            </div>
+        </div>
+<br />
     {% endfor %}
-    </ul>
 {% else %}
     <p>This game has no reviews yet.</p>
 {% endif %}
 
 <hr />
 
-<h3>Add review</h3>
-
-<form action ="{% url 'steam:addreview' game.id %}" method="post">
-    {% csrf_token %}
-    {{ review.as_p }}
-    <input type="submit" class="btn-primary" value="Add">
- </form>
+{% endblock %}

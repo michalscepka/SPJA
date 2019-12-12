@@ -1,6 +1,6 @@
-<h1>Developers</h1>
+{% extends "steam/layout.html" %}
 
-<hr />
+{% block content %}
 
 {% if developer_list %}
     <ul>
@@ -11,3 +11,5 @@
 {% else %}
     <p>No developers are available.</p>
 {% endif %}
+
+{% endblock %}

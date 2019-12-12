@@ -1,6 +1,6 @@
-<h1>Categories</h1>
+{% extends "steam/layout.html" %}
 
-<hr />
+{% block content %}
 
 {% if category_list %}
     <ul>
@@ -11,3 +11,5 @@
 {% else %}
     <p>No categories are available.</p>
 {% endif %}
+
+{% endblock %}

@@ -1,18 +1,30 @@
-<h1>Steam</h1>
+{% extends "steam/layout.html" %}
 
-<hr />
+{% block content %}
 
 <form method="get">
     {{ filter.form.as_p }}
-    <button type="submit">Search</button>
+    <button type="submit" class="btn btn-outline-primary">Search</button>
 </form>
 
+<hr />
+
 {% if filter %}
-    <ul>
-    {% for game in filter.qs %}
-        <li><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></li>
-    {% endfor %}
-    </ul>
+    <div class="row">
+        {% for game in filter.qs %}
+            <div class="col-sm-4">
+                <div class="card">
+                    <a href="{% url 'steam:game' game.id %}"><img class="card-img-top" src="{{ game.image }}" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></h5>
+                    </div>
+                </div>
+                <br />
+            </div>
+        {% endfor %}
+    </div>
 {% else %}
     <p>No games are available.</p>
 {% endif %}
+
+{% endblock %}

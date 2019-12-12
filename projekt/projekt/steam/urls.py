@@ -19,4 +19,6 @@ urlpatterns = [
     path('categories', views.categories, name='categories'),
     # ex: /5/addreview/
     path('<int:game_id>/addreview', views.addreview, name='addreview'),
+    # ex: /5/vote/
+    path('<int:review_id>/vote/', views.vote, name='vote'),
 ]

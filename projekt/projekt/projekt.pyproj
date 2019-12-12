@@ -71,6 +71,7 @@
       <SubType>Code</SubType>
     </Content>
     <Content Include="steam\templates\steam\index.html" />
+    <Content Include="steam\templates\steam\layout.html" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="projekt\" />

@@ -1,14 +1,26 @@
-<h1>{{ developer.name }}</h1>
+{% extends "steam/layout.html" %}
 
-<hr />
+{% block content %}
 
-<img src="{{ developer.logo }}" style="width:255px; height:255px;"/><br />
+<img src="{{ developer.logo }}" style="width:255px; height:255px;"/><br /><hr />
 
-<hr />
+<h5>Games published by {{ developer.name }}</h5>
+{% if developer.game_set.all %}
+    <div class="row">
+        {% for game in developer.game_set.all|dictsort:"name" %}
+            <div class="col-sm-3">
+                <div class="card">
+                    <a href="{% url 'steam:game' game.id %}"><img class="card-img-top" src="{{ game.image }}" alt="Card image cap"></a>
+                    <div class="card-body">
+                        <h5 class="card-title"><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></h5>
+                    </div>
+                </div>
+                <br />
+            </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <p>No games are available.</p>
+{% endif %}
 
-<h3>Games published by {{ developer.name }}</h3>
-<ul>
-{% for game in developer.game_set.all %}
-    <li><a href="{% url 'steam:game' game.id %}">{{ game.name }}</a></li>
-{% endfor %}
-</ul>
+{% endblock %}
