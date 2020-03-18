@@ -1,2 +1,2 @@
 # SPJA
-python
+Scripting Programming Languages and their Applications (Python) - VŠB
